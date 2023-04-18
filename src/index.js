@@ -13,7 +13,9 @@ inp.addEventListener("input", debounce(() => {
 
     if(inp.value.length !== 0) {
         fetchCountries(inp.value.trim()).then((res) => {
-            if(res.length > 10) { 
+            if(res === undefined) {
+                Notify.failure('Oops, there is no country with that name')
+            } else if(res.length > 10) { 
                 Notify.info('Too many matches found. Please enter a more specific name.')
             } else if(res.length > 2 && res.length <= 10) {
                 
